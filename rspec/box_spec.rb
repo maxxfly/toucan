@@ -27,12 +27,12 @@ RSpec.describe Box do
       {code: 'gr5', contents: ['3b', '1c'], type: :petite},
     ]
   end
-  
+
   let(:available_box_for_steve)    { ['gr5'] }
   let(:available_box_for_virginie) { ['gr1', 'gr3', 'gr5'] }
-  let(:available_box_for_fiona)    { ['gr2', 'gr5'] }
-  let(:available_box_for_jenny)    { ['gr1', 'gr2'] }
-  let(:available_box_for_james)    { ['gr2', 'gr4', 'gr5'] }
+  let(:available_box_for_fiona)    { ['gr2', 'gr4'] }
+  let(:available_box_for_jenny)    { ['gr2'] }
+  let(:available_box_for_james)    { ['gr4', 'gr5'] }
   let(:available_box_for_fede)     { ['gr1', 'gr2'] }
   let(:available_box_for_sara)     { ['gr1', 'gr2'] }
   let(:available_box_for_tizi)     { ['gr4', 'gr5'] }
@@ -42,53 +42,53 @@ RSpec.describe Box do
     allow(Box).to receive(:get_all) { boxe_codes }
   end
 
-  subject { Box.scan_new_box_for_users(:users) }
+  subject { Box.scan_new_box_for_users(users) }
 
-  it "check count elements" do 
-    expect(subject.count).to eq users.count 
+  it "check count elements" do
+    expect(subject.count).to eq users.count
   end
-  
-  it "check for Steve" do 
+
+  it "check for Steve" do
     expect(subject).
       to include( users[0].merge(available_boxes: available_box_for_steve ))
   end
 
-  it "check for Virginie" do 
+  it "check for Virginie" do
     expect(subject).
       to include( users[1].merge(available_boxes: available_box_for_virginie ))
   end
 
-  it "check for Fiona" do 
+  it "check for Fiona" do
     expect(subject).
       to include( users[2].merge(available_boxes: available_box_for_fiona ))
   end
 
-  it "check for Jenny" do 
+  it "check for Jenny" do
     expect(subject).
       to include( users[3].merge(available_boxes: available_box_for_jenny ))
   end
-  
-  it "check for James" do 
+
+  it "check for James" do
     expect(subject).
       to include( users[4].merge(available_boxes: available_box_for_james ))
   end
-  
-  it "check for Fede" do 
+
+  it "check for Fede" do
     expect(subject).
       to include( users[5].merge(available_boxes: available_box_for_fede ))
   end
-  
-  it "check for Sara" do 
+
+  it "check for Sara" do
     expect(subject).
       to include( users[6].merge(available_boxes: available_box_for_sara ))
   end
-  
-  it "check for Tizi" do 
+
+  it "check for Tizi" do
     expect(subject).
       to include( users[7].merge(available_boxes: available_box_for_tizi ))
   end
-  
-  it "check for Thomas" do 
+
+  it "check for Thomas" do
     expect(subject).
       to include( users[8].merge(available_boxes: available_box_for_thomas ))
   end
